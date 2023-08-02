@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const promptText = document.getElementById('prompt-text');
-  const nextPromptButton = document.getElementById('next-prompt');
-  
-  let displayedPrompts = []; // To track displayed prompts
 
-  // Function to fetch the next prompt that hasn't been displayed
-  async function fetchNextPrompt() {
+  // Function to fetch the prompt of the day
+  async function fetchPromptOfTheDay() {
     try {
-      const response = await fetch('https://wssdtetyjafznlphnrmb.supabase.co/rest/v1/prompts', {
+      const response = await fetch('https://wssdtetyjafznlphnrmb.supabase.co/rest/v1/prompts/rest/v1/prompts', {
         headers: {
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indzc2R0ZXR5amFmem5scGhucm1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA3MTI2MTksImV4cCI6MjAwNjI4ODYxOX0.xkFd8YYPahe90YDjBsdks1Co9GjcaudFz2BTWsfDTV0',
           'Prefer': 'return=representation',
@@ -27,17 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Display the next prompt
-  async function displayNextPrompt() {
+  // Display the prompt of the day when the page loads
+  async function displayPromptOfTheDay() {
     try {
-      const prompt = await fetchNextPrompt();
+      const prompt = await fetchPromptOfTheDay();
 
-      if (prompt) {
+      if (prompt && prompt.length > 0) {
         promptText.textContent = prompt[0].prompt_text;
-        displayedPrompts.push(prompt[0].id);
       } else {
-        promptText.textContent = 'No more prompts available.';
-        nextPromptButton.disabled = true;
+        promptText.textContent = 'No prompt available for today.';
       }
     } catch (error) {
       console.error('Error displaying prompt:', error);
@@ -45,9 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle "Next Prompt" button click
-  nextPromptButton.addEventListener('click', displayNextPrompt);
-
-  // Display the first prompt when the page loads
-  displayNextPrompt();
+  // Display the prompt of the day when the page loads
+  displayPromptOfTheDay();
 });
