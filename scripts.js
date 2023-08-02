@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to fetch the prompt of the day
   async function fetchPromptOfTheDay() {
     try {
-      const response = await fetch('https://wssdtetyjafznlphnrmb.supabase.co/rest/v1/prompts/rest/v1/prompts', {
+      const response = await fetch('https://wssdtetyjafznlphnrmb.supabase.co/rest/v1/prompts', {
         headers: {
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indzc2R0ZXR5amFmem5scGhucm1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTA3MTI2MTksImV4cCI6MjAwNjI4ODYxOX0.xkFd8YYPahe90YDjBsdks1Co9GjcaudFz2BTWsfDTV0',
           'Prefer': 'return=representation',
